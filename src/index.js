@@ -1,14 +1,13 @@
 const http = require('http');
 const service = require('./server/server');
-
-
-const port = process.env.PORT || '8080';
-service.set('port', port);
+const log = require('./utils/logger');
 
 const server = http.createServer(service);
 
-server.listen(port);
-
-console.log(`Server is listening requests on ${port}`);
+if (process.env.NODE_ENV !== 'test')
+  server.listen(process.env.PORT || 8080, (err) => {
+    if (err) throw err
+    log.info('Server is listening requests.');
+  })
 
 module.exports = server;
