@@ -1,10 +1,10 @@
 const express = require('express');
 
 const router = express.Router();
-const { getHealth } = require('../services/health');
+const { getTodos } = require('../services/getTodos');
 
 router.get('/', (request, respond) => {
-  respond.status(200).send(getHealth());
+  respond.status(200).send(getTodos());
 });
 
 module.exports = router;

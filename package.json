@@ -8,23 +8,15 @@
   },
   "scripts": {
     "start": "node src/index.js",
-    "test": "jest -c jest.config.js --runInBand --detectOpenHandles --forceExit",
-    "lint": "eslint --ignore-pattern 'node_modules/**' 'src/**/*.{js,jsx,ts,tsx}' '__tests__/**/*.{js,jsx,ts,tsx}'",
-    "lint-fix": "npm run lint -- --fix"
+    "test": "jest -c jest.config.js --runInBand --detectOpenHandles --forceExit"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged",
       "pre-push": "npm run test"
     }
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": [
-      "npm run lint-fix",
-      "git add"
-    ]
-  },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "joi": "^14.3.1",
     "joi-date-extensions": "^1.2.0",
@@ -35,7 +27,6 @@
     "eslint-config-airbnb-base": "~14.0.0",
     "eslint-plugin-import": "~2.18.2",
     "husky": "~3.0.5",
-    "jest": "~24.9.0",
-    "lint-staged": "~9.2.5"
+    "jest": "~24.9.0"
   }
 }
