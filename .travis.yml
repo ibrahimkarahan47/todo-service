@@ -9,3 +9,9 @@ script:
   - echo 'Build Starts!'
   - echo 'Running Test!'
   - npm test
+  - echo 'Dockerizing Starts!'
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker build -t $DOCKER_IMAGE_NAME .
+  - docker images
+  - docker tag $DOCKER_IMAGE_NAME $DOCKER_USERNAME/$DOCKER_IMAGE_NAME
+  - docker push $DOCKER_USERNAME/$DOCKER_IMAGE_NAME
